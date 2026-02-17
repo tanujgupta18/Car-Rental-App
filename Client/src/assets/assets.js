@@ -13,6 +13,9 @@ import location_icon from "./location_icon.svg";
 import fuel_icon from "./fuel_icon.svg";
 import arrow_icon from "./arrow_icon.svg";
 import banner_car_image from "./banner_car_image.png";
+import testimonial_image_1 from "./testimonial_image_1.png";
+import testimonial_image_2 from "./testimonial_image_2.png";
+import star_icon from "./star_icon.svg";
 
 export const assets = {
   logo,
@@ -30,6 +33,9 @@ export const assets = {
   fuel_icon,
   arrow_icon,
   banner_car_image,
+  testimonial_image_1,
+  testimonial_image_2,
+  star_icon,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];
@@ -112,5 +118,29 @@ export const dummyCarData = [
       "This is a mid-size luxury sedan produced by Toyota. The Corolla made its debut in 2008 as the first sedan ever produced by Toyota.",
     isAvaliable: true,
     createdAt: "2025-04-17T06:15:47.318Z",
+  },
+];
+
+export const testimonialsData = [
+  {
+    name: "Emma Rodriguez",
+    location: "Barcelona, Spain",
+    image: assets.testimonial_image_1,
+    testimonial:
+      "I've rented cars from various companies, but the experience with CarRental was exceptional.",
+  },
+  {
+    name: "John Smith",
+    location: "New York, USA",
+    image: assets.testimonial_image_2,
+    testimonial:
+      "CarRental made my trip so much easier. The car was delivered right to my door, and the customer service was fantastic!",
+  },
+  {
+    name: "Ava Johnson",
+    location: "Sydney, Australia",
+    image: assets.testimonial_image_1,
+    testimonial:
+      "I highly recommend CarRental! Their fleet is amazing, and I always feel like I'm getting the best deal with excellent service.",
   },
 ];

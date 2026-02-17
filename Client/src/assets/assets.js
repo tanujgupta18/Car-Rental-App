@@ -22,6 +22,8 @@ import instagram_logo from "./instagram_logo.svg";
 import twitter_logo from "./twitter_logo.svg";
 import check_icon from "./check_icon.svg";
 import filter_icon from "./filter_icon.svg";
+import calendar_icon_colored from "./calendar_icon_colored.svg";
+import location_icon_colored from "./location_icon_colored.svg";
 
 export const assets = {
   logo,
@@ -48,6 +50,8 @@ export const assets = {
   twitter_logo,
   check_icon,
   filter_icon,
+  calendar_icon_colored,
+  location_icon_colored,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];
@@ -154,5 +158,52 @@ export const testimonialsData = [
     image: assets.testimonial_image_1,
     testimonial:
       "I highly recommend CarRental! Their fleet is amazing, and I always feel like I'm getting the best deal with excellent service.",
+  },
+];
+
+export const dummyMyBookingsData = [
+  {
+    _id: "68482bcc98eb9722b7751f70",
+    car: dummyCarData[0],
+    user: "6847f7cab3d8daecdb517095",
+    owner: "6847f7cab3d8daecdb517095",
+    pickupDate: "2025-06-13T00:00:00.000Z",
+    returnDate: "2025-06-14T00:00:00.000Z",
+    status: "confirmed",
+    price: 440,
+    createdAt: "2025-06-10T12:57:48.244Z",
+  },
+  {
+    _id: "68482bb598eb9722b7751f60",
+    car: dummyCarData[1],
+    user: "6847f7cab3d8daecdb517095",
+    owner: "67fe3467ed8a8fe17d0ba6e2",
+    pickupDate: "2025-06-12T00:00:00.000Z",
+    returnDate: "2025-06-12T00:00:00.000Z",
+    status: "pending",
+    price: 130,
+    createdAt: "2025-06-10T12:57:25.613Z",
+  },
+  {
+    _id: "684800fa0fb481c5cfd92e56",
+    car: dummyCarData[2],
+    user: "6847f7cab3d8daecdb517095",
+    owner: "67fe3467ed8a8fe17d0ba6e2",
+    pickupDate: "2025-06-11T00:00:00.000Z",
+    returnDate: "2025-06-12T00:00:00.000Z",
+    status: "pending",
+    price: 600,
+    createdAt: "2025-06-10T09:55:06.379Z",
+  },
+  {
+    _id: "6847fe790fb481c5cfd92d94",
+    car: dummyCarData[3],
+    user: "6847f7cab3d8daecdb517095",
+    owner: "6847f7cab3d8daecdb517095",
+    pickupDate: "2025-06-11T00:00:00.000Z",
+    returnDate: "2025-06-12T00:00:00.000Z",
+    status: "confirmed",
+    price: 440,
+    createdAt: "2025-06-10T09:44:25.410Z",
   },
 ];

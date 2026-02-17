@@ -21,6 +21,7 @@ import facebook_logo from "./facebook_logo.svg";
 import instagram_logo from "./instagram_logo.svg";
 import twitter_logo from "./twitter_logo.svg";
 import check_icon from "./check_icon.svg";
+import filter_icon from "./filter_icon.svg";
 
 export const assets = {
   logo,
@@ -46,6 +47,7 @@ export const assets = {
   instagram_logo,
   twitter_logo,
   check_icon,
+  filter_icon,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];

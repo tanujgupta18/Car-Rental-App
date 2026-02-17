@@ -16,6 +16,10 @@ import banner_car_image from "./banner_car_image.png";
 import testimonial_image_1 from "./testimonial_image_1.png";
 import testimonial_image_2 from "./testimonial_image_2.png";
 import star_icon from "./star_icon.svg";
+import gmail_logo from "./gmail_logo.svg";
+import facebook_logo from "./facebook_logo.svg";
+import instagram_logo from "./instagram_logo.svg";
+import twitter_logo from "./twitter_logo.svg";
 
 export const assets = {
   logo,
@@ -36,6 +40,10 @@ export const assets = {
   testimonial_image_1,
   testimonial_image_2,
   star_icon,
+  gmail_logo,
+  facebook_logo,
+  instagram_logo,
+  twitter_logo,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];

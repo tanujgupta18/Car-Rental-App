@@ -12,6 +12,7 @@ import car_icon from "./car_icon.svg";
 import location_icon from "./location_icon.svg";
 import fuel_icon from "./fuel_icon.svg";
 import arrow_icon from "./arrow_icon.svg";
+import banner_car_image from "./banner_car_image.png";
 
 export const assets = {
   logo,
@@ -28,6 +29,7 @@ export const assets = {
   location_icon,
   fuel_icon,
   arrow_icon,
+  banner_car_image,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];

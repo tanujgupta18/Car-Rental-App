@@ -34,6 +34,7 @@ import listIcon from "./listIcon.svg";
 import listIconColored from "./listIconColored.svg";
 import carIcon from "./carIcon.svg";
 import carIconColored from "./carIconColored.svg";
+import cautionIconColored from "./cautionIconColored.svg";
 
 export const assets = {
   logo,
@@ -72,6 +73,7 @@ export const assets = {
   listIconColored,
   carIcon,
   carIconColored,
+  cautionIconColored,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];
@@ -261,4 +263,13 @@ export const dummyUserData = {
   email: "admin@example.com",
   role: "owner",
   image: user_profile,
+};
+
+export const dummyDashboardData = {
+  totalCars: 4,
+  totalBookings: 2,
+  pendingBookings: 0,
+  completedBookings: 2,
+  recentBookings: [dummyMyBookingsData[0], dummyMyBookingsData[1]],
+  monthlyRevenue: 840,
 };

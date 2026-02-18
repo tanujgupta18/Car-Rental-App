@@ -24,6 +24,7 @@ import check_icon from "./check_icon.svg";
 import filter_icon from "./filter_icon.svg";
 import calendar_icon_colored from "./calendar_icon_colored.svg";
 import location_icon_colored from "./location_icon_colored.svg";
+import user_profile from "./user_profile.png";
 
 export const assets = {
   logo,
@@ -52,6 +53,7 @@ export const assets = {
   filter_icon,
   calendar_icon_colored,
   location_icon_colored,
+  user_profile,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];
@@ -207,3 +209,11 @@ export const dummyMyBookingsData = [
     createdAt: "2025-06-10T09:44:25.410Z",
   },
 ];
+
+export const dummyUserData = {
+  _id: "6847f7cab3d8daecdb517095",
+  name: "Tanuj Gupta",
+  email: "admin@example.com",
+  role: "owner",
+  image: user_profile,
+};

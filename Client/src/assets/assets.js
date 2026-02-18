@@ -25,6 +25,15 @@ import filter_icon from "./filter_icon.svg";
 import calendar_icon_colored from "./calendar_icon_colored.svg";
 import location_icon_colored from "./location_icon_colored.svg";
 import user_profile from "./user_profile.png";
+import edit_icon from "./edit_icon.svg";
+import dashboardIcon from "./dashboardIcon.svg";
+import dashboardIconColored from "./dashboardIconColored.svg";
+import addIcon from "./addIcon.svg";
+import addIconColored from "./addIconColored.svg";
+import listIcon from "./listIcon.svg";
+import listIconColored from "./listIconColored.svg";
+import carIcon from "./carIcon.svg";
+import carIconColored from "./carIconColored.svg";
 
 export const assets = {
   logo,
@@ -54,6 +63,15 @@ export const assets = {
   calendar_icon_colored,
   location_icon_colored,
   user_profile,
+  edit_icon,
+  dashboardIcon,
+  dashboardIconColored,
+  addIcon,
+  addIconColored,
+  listIcon,
+  listIconColored,
+  carIcon,
+  carIconColored,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];
@@ -62,6 +80,33 @@ export const menuLinks = [
   { name: "Home", path: "/" },
   { name: "Cars", path: "/cars" },
   { name: "My Bookings", path: "/my-bookings" },
+];
+
+export const ownerMenuLinks = [
+  {
+    name: "Dashboard",
+    path: "/owner",
+    icon: dashboardIcon,
+    coloredIcon: dashboardIconColored,
+  },
+  {
+    name: "Add car",
+    path: "/owner/add-car",
+    icon: addIcon,
+    coloredIcon: addIconColored,
+  },
+  {
+    name: "Manage Cars",
+    path: "/owner/manage-cars",
+    icon: carIcon,
+    coloredIcon: carIconColored,
+  },
+  {
+    name: "Manage Bookings",
+    path: "/owner/manage-bookings",
+    icon: listIcon,
+    coloredIcon: listIconColored,
+  },
 ];
 
 export const dummyCarData = [

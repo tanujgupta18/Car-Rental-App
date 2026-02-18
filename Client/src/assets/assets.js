@@ -35,6 +35,8 @@ import listIconColored from "./listIconColored.svg";
 import carIcon from "./carIcon.svg";
 import carIconColored from "./carIconColored.svg";
 import cautionIconColored from "./cautionIconColored.svg";
+import upload_icon from "./upload_icon.svg";
+import tick_icon from "./tick_icon.svg";
 
 export const assets = {
   logo,
@@ -74,6 +76,8 @@ export const assets = {
   carIcon,
   carIconColored,
   cautionIconColored,
+  upload_icon,
+  tick_icon,
 };
 
 export const cityList = ["New York", "Los Angeles", "Houston", "Chicago"];

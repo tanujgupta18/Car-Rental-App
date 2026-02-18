@@ -8,6 +8,7 @@ import MyBookings from "./pages/MyBookings";
 import Footer from "./components/Footer";
 import Layout from "./pages/owner/Layout";
 import Dashboard from "./pages/owner/Dashboard";
+import AddCar from "./pages/owner/AddCar";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -25,6 +26,7 @@ const App = () => {
 
         <Route path="/owner" element={<Layout />}>
           <Route index element={<Dashboard />} />
+          <Route path="add-car" element={<AddCar />} />
         </Route>
       </Routes>
 

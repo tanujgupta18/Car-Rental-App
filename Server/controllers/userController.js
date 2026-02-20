@@ -3,8 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const generateToken = (userId) => {
-  const payload = userId;
-  return jwt.sign(payload, process.env.JWT_SECRET);
+  return jwt.sign({ userId }, process.env.JWT_SECRET);
 };
 
 // API to register user
@@ -45,6 +44,15 @@ export const loginUser = async (req, res) => {
     }
     const token = generateToken(user._id.toString());
     res.json({ success: true, token });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
+
+// API to get userData
+export const getUserData = async (req, res) => {
+  try {
+    res.json({ success: true, user: req.user });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }

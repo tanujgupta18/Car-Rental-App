@@ -20,7 +20,7 @@ const CarCard = ({ car }) => {
           src={car.image}
           alt="car-img"
         />
-        {car.isAvaliable && (
+        {car.isAvailable && (
           <p className="absolute top-4 left-4 bg-primary/90 text-white text-xs px-2.5 py-1 rounded-full">
             Available Now
           </p>

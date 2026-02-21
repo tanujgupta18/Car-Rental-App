@@ -89,3 +89,21 @@ export const getUserBookings = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+// API to List Owner Bookings
+export const getOwnerBookings = async (req, res) => {
+  try {
+    if (req.user.role !== "owner") {
+      return res.json({ success: false, message: "Unauthorised" });
+    }
+
+    const bookings = await Booking.find({ owner: req.user._id })
+      .populate("car user")
+      .select("-user.password")
+      .sort({ createdAt: -1 });
+
+    res.json({ success: true, bookings });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};

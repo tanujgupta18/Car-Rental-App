@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import Car from "../models/Car.js";
 
 const generateToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET);
@@ -53,6 +54,16 @@ export const loginUser = async (req, res) => {
 export const getUserData = async (req, res) => {
   try {
     res.json({ success: true, user: req.user });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
+
+// API to get ALL Cars
+export const getCars = async (req, res) => {
+  try {
+    const cars = await Car.find({ isAvailable: true });
+    res.json({ success: true, cars });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }

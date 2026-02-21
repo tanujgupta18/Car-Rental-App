@@ -15,6 +15,8 @@ const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isOwner, setIsOwner] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [pickupDate, setPickupDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
 
   const [cars, setCars] = useState([]);
 
@@ -79,6 +81,10 @@ const AppContextProvider = ({ children }) => {
     showLogin,
     setShowLogin,
     logout,
+    pickupDate,
+    setPickupDate,
+    returnDate,
+    setReturnDate,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

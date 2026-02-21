@@ -1,18 +1,63 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Title from "../../components/owner/Title";
-import { assets, dummyCarData } from "../../assets/assets";
+import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const ManageCars = () => {
-  const currency = import.meta.env.VITE_CURRENCY;
+  const { currency, axios, isOwner } = useContext(AppContext);
   const [cars, setCars] = useState([]);
 
   const fetchOwnersCars = async () => {
-    setCars(dummyCarData);
+    try {
+      const { data } = await axios.get("/api/owner/cars");
+      if (data.success) {
+        setCars(data.cars);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const toggleAvailability = async (carId) => {
+    try {
+      const { data } = await axios.post("/api/owner/toggle-car", { carId });
+      if (data.success) {
+        toast.success(data.message);
+        fetchOwnersCars();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const deleteCar = async (carId) => {
+    try {
+      const confirm = window.confirm(
+        "Are you sure you want to delete this car?",
+      );
+
+      if (!confirm) return null;
+
+      const { data } = await axios.post("/api/owner/delete-car", { carId });
+      if (data.success) {
+        toast.success(data.message);
+        fetchOwnersCars();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
-    fetchOwnersCars();
-  }, []);
+    isOwner && fetchOwnersCars();
+  }, [isOwner]);
 
   return (
     <div className="px-4 py-10 md:px-10 w-full">
@@ -67,6 +112,7 @@ const ManageCars = () => {
                 </td>
                 <td className="p-3 flex items-center">
                   <img
+                    onClick={() => toggleAvailability(car._id)}
                     className="cursor-pointer"
                     src={
                       car.isAvailable ? assets.eye_close_icon : assets.eye_icon
@@ -74,6 +120,7 @@ const ManageCars = () => {
                     alt="eye-icon"
                   />
                   <img
+                    onClick={() => deleteCar(car._id)}
                     className="cursor-pointer"
                     src={assets.delete_icon}
                     alt="delete-icon"

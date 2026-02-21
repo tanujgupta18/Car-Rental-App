@@ -14,6 +14,9 @@ const AppContextProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [isOwner, setIsOwner] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
+  const [cars, setCars] = useState([]);
 
   const fetchUser = async () => {
     try {
@@ -29,9 +32,28 @@ const AppContextProvider = ({ children }) => {
     }
   };
 
+  const fetchCars = async () => {
+    try {
+      const { data } = await axios.get("/api/users/cars");
+      data.success ? setCars(data.cars) : toast.error(data.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    setUser(null);
+    setIsOwner(false);
+    delete axios.defaults.headers.common["Authorization"];
+    toast.success("You have been logged out");
+  };
+
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    setToken(storedToken);
+    if (storedToken) setToken(storedToken);
+    fetchCars();
   }, []);
 
   useEffect(() => {
@@ -44,11 +66,19 @@ const AppContextProvider = ({ children }) => {
   const value = {
     navigate,
     currency,
+    axios,
     token,
     setToken,
     user,
     setUser,
+    fetchUser,
     isOwner,
+    setIsOwner,
+    cars,
+    fetchCars,
+    showLogin,
+    setShowLogin,
+    logout,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

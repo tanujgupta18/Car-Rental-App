@@ -136,3 +136,32 @@ export const getDashboardData = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+// API to update user Image
+export const updateUserImage = async (req, res) => {
+  try {
+    const { _id } = req.user;
+
+    const imageFile = req.file;
+
+    if (!imageFile) {
+      return res.json({ success: false, message: "Image is required" });
+    }
+
+    // Upload Image to ImageKit
+    const fileBuffer = fs.readFileSync(imageFile.path);
+    const response = await imagekit.files.upload({
+      file: fileBuffer.toString("base64"),
+      fileName: imageFile.originalname,
+      folder: "/users",
+    });
+
+    fs.unlinkSync(imageFile.path);
+    const image = response.url;
+
+    await User.findByIdAndUpdate(_id, { image });
+    res.json({ success: true, message: "Image Updated" });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};

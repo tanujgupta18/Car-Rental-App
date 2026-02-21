@@ -75,3 +75,17 @@ export const createBooking = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+// API to List User Bookings
+export const getUserBookings = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const bookings = await Booking.find({ user: _id })
+      .populate("car")
+      .sort({ createdAt: -1 });
+
+    res.json({ success: true, bookings });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};

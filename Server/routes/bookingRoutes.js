@@ -1,6 +1,7 @@
 import express from "express";
 import { protect } from "../middlewares/auth.js";
 import {
+  changeBookingStatus,
   checkAvailabilityOfCar,
   createBooking,
   getOwnerBookings,
@@ -13,5 +14,6 @@ bookingRouter.post("/check-availability", checkAvailabilityOfCar);
 bookingRouter.post("/create", protect, createBooking);
 bookingRouter.get("/user", protect, getUserBookings);
 bookingRouter.get("/owner", protect, getOwnerBookings);
+bookingRouter.post("/change-status", protect, changeBookingStatus);
 
 export default bookingRouter;

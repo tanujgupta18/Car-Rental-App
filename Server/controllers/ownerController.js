@@ -1,4 +1,5 @@
 import imagekit from "../config/imageKit.js";
+import Booking from "../models/Booking.js";
 import Car from "../models/Car.js";
 import User from "../models/User.js";
 import fs from "fs";
@@ -90,6 +91,47 @@ export const deleteCar = async (req, res) => {
     car.isAvailable = false;
     await car.save();
     res.json({ success: true, message: "Car Removed" });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
+
+// API to get Dashboard Data
+export const getDashboardData = async (req, res) => {
+  try {
+    const { _id, role } = req.user;
+
+    if (role !== "owner")
+      return res.json({ success: false, message: "Unauthorised" });
+
+    const cars = await Car.find({ owner: _id });
+
+    const bookings = await Booking.find({ owner: _id })
+      .populate("car")
+      .sort({ createdAt: -1 });
+
+    const pendingBookings = bookings.filter(
+      (b) => b.status === "pending",
+    ).length;
+
+    const completedBookings = bookings.filter(
+      (b) => b.status === "confirmed",
+    ).length;
+
+    const monthlyRevenue = bookings
+      .filter((b) => b.status === "confirmed")
+      .reduce((acc, b) => acc + b.price, 0);
+
+    const dashboardData = {
+      totalCars: cars.length,
+      totalBookings: bookings.length,
+      pendingBookings,
+      completedBookings,
+      recentBookings: bookings.slice(0, 3),
+      monthlyRevenue,
+    };
+
+    res.json({ success: true, dashboardData });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }

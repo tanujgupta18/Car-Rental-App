@@ -1,24 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { assets, dummyCarData } from "../assets/assets";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { assets } from "../assets/assets";
 import Loader from "../components/Loader";
+import { AppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const CarDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-
   const [car, setCar] = useState(null);
-
-  const currency = import.meta.env.VITE_CURRENCY;
+  const {
+    axios,
+    cars,
+    currency,
+    navigate,
+    pickupDate,
+    setPickupDate,
+    returnDate,
+    setReturnDate,
+  } = useContext(AppContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const { data } = await axios.post("/api/bookings/create", {
+        car: id,
+        pickupDate,
+        returnDate,
+      });
+
+      if (data.success) {
+        toast.success(data.message);
+        navigate("/my-bookings");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
-    setCar(dummyCarData.find((car) => car._id === id));
-    console.log(dummyCarData.find((car) => car._id === id));
-  }, [id]);
+    setCar(cars.find((car) => car._id === id));
+  }, [cars, id]);
 
   return car ? (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 mt-16">
@@ -113,6 +136,8 @@ const CarDetails = () => {
             <input
               type="date"
               id="pickup-date"
+              value={pickupDate}
+              onChange={(e) => setPickupDate(e.target.value)}
               className="border border-borderColor px-3 py-2 rounded-lg"
               min={new Date().toISOString().split("T")[0]}
               required
@@ -124,6 +149,8 @@ const CarDetails = () => {
             <input
               type="date"
               id="return-date"
+              value={returnDate}
+              onChange={(e) => setReturnDate(e.target.value)}
               className="border border-borderColor px-3 py-2 rounded-lg"
               required
             />
